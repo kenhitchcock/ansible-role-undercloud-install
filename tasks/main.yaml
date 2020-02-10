@@ -1,0 +1,34 @@
+- import_tasks: pre-flight-checks.yaml
+
+# Lab creator does this
+#- import_tasks: set-interface.yaml
+- import_tasks: add-ssh-key-to-root.yaml
+- import_tasks: create-stack-user.yaml 
+- import_tasks: create-dirs.yaml
+- import_tasks: modify-hosts.yaml
+- import_tasks: update-system.yaml
+- import_tasks: reboot-system.yaml
+- import_tasks: install-rdo.yaml
+- import_tasks: bootif-fix.yaml
+  when: bootifFix|default(false)|bool == true
+- import_tasks: undercloud-config-ssl.yaml
+
+# Using a template for the undercloud.conf. Need to work this out better, 
+# but for now we will stop at this stage as the undercloud.conf needs to be
+# manually configured before running undercloud install.
+#- import_tasks: undercloud-config.yaml
+#- import_tasks: undercloud-install.yaml
+
+  # need to work on this task to include Red Hat supported ansible or ask the question.
+  #- import_tasks: install-ansible.yaml
+  #  when: goAnsible|default(false)|bool == true
+ 
+  # This task is reliant on the previous.
+  #- import_tasks: upload-playbooks.yaml
+  #when: goAnsible|default(false)|bool == true
+
+- import_tasks: create-local-registry.yaml
+  when: 
+    - (osp_version == "osp12" or osp_version == "osp13" )
+    - create_local_registry|default(false)|bool == true
+

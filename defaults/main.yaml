@@ -1,0 +1,13 @@
+---
+
+osp_version: "osp13"
+
+base_packages:
+  - python-tripleoclient 
+  - libguestfs-tools
+  - crudini
+
+# Default to not using ssl. Values accepted are "" or yes.
+enable_ssl:
+
+
