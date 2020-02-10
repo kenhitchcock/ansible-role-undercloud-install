@@ -1,4 +1,4 @@
-Role Name
+ansible-role-undercloud-install
 =========
 
 > Red Hat Openstack undercloud installation.
@@ -21,6 +21,9 @@ Role Variables
 Available variables are listed below, along with default values (see defaults/main.yml):
 
     # No are required to be overwirtten for now. defaults/main.yaml has variables set for basic installation. 
+
+    # For a different version you will need to override the default variable.
+      osp_version: 13
 
 
 Future Releases
